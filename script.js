@@ -1,5 +1,64 @@
 (() => {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fog = document.querySelector('.hero-fog');
+  if (fog && !reduced) {
+    const ctx = fog.getContext('2d');
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    const color = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    let width = 0;
+    let height = 0;
+    const paint = () => {
+      const bounds = fog.getBoundingClientRect();
+      width = fog.width = Math.max(1, Math.round(bounds.width * dpr));
+      height = fog.height = Math.max(1, Math.round(bounds.height * dpr));
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = color('--smoke-fill');
+      ctx.fillRect(0, 0, width, height);
+      for (let index = 0; index < 18; index += 1) {
+        const x = Math.random() * width;
+        const y = Math.random() * height;
+        const radius = (.12 + Math.random() * .18) * Math.max(width, height);
+        const cloud = ctx.createRadialGradient(x, y, 0, x, y, radius);
+        cloud.addColorStop(0, color('--smoke-cloud'));
+        cloud.addColorStop(1, color('--smoke-clear'));
+        ctx.fillStyle = cloud;
+        ctx.fillRect(x - radius, y - radius, radius * 2, radius * 2);
+      }
+    };
+    const wipe = (x, y, radius = 56) => {
+      ctx.globalCompositeOperation = 'destination-out';
+      const size = radius * dpr;
+      const brush = ctx.createRadialGradient(x, y, 0, x, y, size);
+      brush.addColorStop(0, color('--smoke-erase'));
+      brush.addColorStop(.65, color('--smoke-erase-soft'));
+      brush.addColorStop(1, color('--smoke-clear'));
+      ctx.fillStyle = brush;
+      ctx.fillRect(x - size, y - size, size * 2, size * 2);
+    };
+    const stroke = (from, to, radius) => {
+      const steps = Math.max(1, Math.ceil(Math.hypot(to[0] - from[0], to[1] - from[1]) / (radius * dpr * .35)));
+      for (let step = 0; step <= steps; step += 1) {
+        wipe(from[0] + (to[0] - from[0]) * step / steps, from[1] + (to[1] - from[1]) * step / steps, radius);
+      }
+    };
+    const point = (event) => {
+      const bounds = fog.getBoundingClientRect();
+      return [(event.clientX - bounds.left) * dpr, (event.clientY - bounds.top) * dpr];
+    };
+    paint();
+    window.addEventListener('resize', paint, { passive: true });
+    let pressed = false;
+    let previous = null;
+    fog.addEventListener('pointerdown', (event) => { pressed = true; previous = point(event); wipe(...previous); });
+    fog.addEventListener('pointermove', (event) => {
+      if (!pressed && event.pointerType !== 'mouse') return;
+      const current = point(event);
+      if (previous) stroke(previous, current, 48);
+      previous = current;
+    });
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach((name) => fog.addEventListener(name, () => { pressed = false; previous = null; }));
+  }
   const progress = document.getElementById('readingProgress');
   if (!reduced && progress) {
     let pending = false;

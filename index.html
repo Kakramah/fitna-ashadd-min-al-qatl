@@ -15,7 +15,7 @@
   <meta property="og:url" content="https://kakramah.github.io/fitna-ashadd-min-al-qatl/">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/svg+xml" href="images/eagle-emblem-metal.svg">
-  <link rel="preload" href="fonts/Amiri-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/aref-ruqaa-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
@@ -24,16 +24,19 @@
   <div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
 
   <header class="hero" id="top">
-    <img class="hero-image" src="images/hero-thread.webp" width="1672" height="941" alt="يد تمسك خيطاً أحمر عند جمرة صغيرة فوق ورق ممزق" fetchpriority="high">
-    <div class="hero-shade" aria-hidden="true"></div>
-    <div class="hero-top wrap"><span>رسالة إلى السوريين</span><a href="#message">اقرأ الرسالة <span aria-hidden="true">↓</span></a></div>
-    <div class="hero-copy wrap">
-      <p class="eyebrow">كلمة واحدة قد تبدأ بها</p>
-      <h1>الفتنة <span>أشد من القتل</span></h1>
-      <p class="hero-lead">حين تصلك كلمة تشعل الخوف، لا تكن طريقها إلى بيت آخر.</p>
-      <span class="hero-scroll" aria-hidden="true">تابع القراءة <span>↓</span></span>
+    <div class="hero-stage">
+      <img class="hero-image" src="images/hero-thread.webp" width="1672" height="941" alt="يد تمسك خيطاً أحمر عند جمرة صغيرة فوق ورق ممزق" fetchpriority="high">
+      <div class="hero-shade" aria-hidden="true"></div>
+      <canvas class="hero-fog" aria-hidden="true"></canvas>
+      <div class="hero-top wrap"><span>رسالة إلى السوريين</span><a href="#message">اقرأ الرسالة <span aria-hidden="true">↓</span></a></div>
+      <div class="hero-copy wrap">
+        <h1><span>الفتنة</span> <span>أشد من القتل</span></h1>
+        <p class="hero-lead">حين تصلك كلمة تشعل الخوف، لا تكن طريقها إلى بيت آخر.</p>
+        <p class="hero-hint">امسح الدخان… ثم انزل.</p>
+      </div>
+      <span class="hero-cue" aria-hidden="true"></span>
+      <div class="hero-edge" aria-hidden="true"></div>
     </div>
-    <div class="hero-edge" aria-hidden="true"></div>
   </header>
 
   <main id="message">
