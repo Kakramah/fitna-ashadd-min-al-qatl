@@ -1,0 +1,8 @@
+{
+  "images": [
+    {"file":"images/hero-thread.webp","source":"generated for this project","rights":"generated visual","role":"hero","documentary":false,"alt":"يد تبعد خيطاً أحمر عن جمرة على ورق ممزق"},
+    {"file":"images/rumor-phone.webp","source":"generated for this project","rights":"generated visual","role":"human consequence","documentary":false,"alt":"هاتف على طاولة وخيط أحمر يمتد نحو شخصين متباعدين في منزل"},
+    {"file":"images/mended-thread.webp","source":"generated for this project","rights":"generated visual","role":"resolution","documentary":false,"alt":"يدان تعقدان خيطاً أحمر انقطع فوق ورق قديم"},
+    {"file":"images/eagle-emblem-metal.svg","source":"canonical brand asset","rights":"user brand asset","role":"quiet footer emblem","documentary":false,"alt":"عقاب الهوية الرسمي"}
+  ]
+}

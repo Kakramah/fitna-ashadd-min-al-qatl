@@ -1,0 +1,17 @@
+{
+  "url": "file:///Users/khaldounaakramah/khaldoun-projects/fitna-ashadd-min-al-qatl/index.html",
+  "checks": [
+    "1440px: no overflow, all images loaded, one h1, reduced-motion text visible",
+    "390px: no overflow, all images loaded, one h1, reduced-motion text visible",
+    "Keyboard decision works with visible feedback",
+    "375px: no overflow, all images loaded, one h1, reduced-motion text visible",
+    "Normal scrolling reveals every section",
+    "OG preview rendered at 1200x630"
+  ],
+  "screenshots": [
+    "page-1440.png",
+    "page-390.png"
+  ],
+  "errors": [],
+  "passed": true
+}
